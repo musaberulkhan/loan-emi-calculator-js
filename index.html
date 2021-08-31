@@ -16,11 +16,37 @@
     <!-- BootStrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <!-- Google Fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
-      
+        <h1 class="text-center mt-5">Loan EMI Calculator with <span style="color: rgb(199, 106, 0);">Breakdown</span>
+        </h1>
+        <div class="mt-5 calculator">
+            <form>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Loan Amount</label>
+                    <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Example: 200000">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Bank Interest (%)</label>
+                    <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Example: 9">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Number of EMIs</label>
+                    <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Example: 24">
+                </div>
+                <div class="mb-3 mt-4 d-flex justify-content-center">                   
+                    <input type="button" class="btn btn-dark px-3 py-2" id="exampleFormControlInput1" value="Calculate">
+                </div>
+            </form>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
