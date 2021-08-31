@@ -31,21 +31,30 @@
         <div class="mt-5 calculator">
             <form>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Loan Amount</label>
-                    <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Example: 200000">
+                    <label for="loan-amount-input" class="form-label">Loan Amount</label>
+                    <input type="number" class="form-control" id="loan-amount-input" placeholder="Example: 200000">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Bank Interest (%)</label>
-                    <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Example: 9">
+                    <label for="bank-interest-input" class="form-label">Bank Interest (%)</label>
+                    <input type="number" class="form-control" id="bank-interest-input" placeholder="Example: 9">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Number of EMIs</label>
-                    <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Example: 24">
+                    <label for="number-of-emis-input" class="form-label">Number of EMIs</label>
+                    <input type="number" class="form-control" id="number-of-emis-input" placeholder="Example: 24">
                 </div>
                 <div class="mb-3 mt-4 d-flex justify-content-center">                   
-                    <input type="button" class="btn btn-dark px-3 py-2" id="exampleFormControlInput1" value="Calculate">
+                    <input type="button" class="btn btn-dark px-3 py-2" id="calculate-button" value="Calculate">
+                </div>
+                <div class="mt-2">                   
+                    <p id="error-message" class="text-center text-danger fw-bold"></p>
                 </div>
             </form>
+        </div>
+
+        <div class="table-div my-5 d-flex justify-content-center">
+            <table id="breakdown-table">
+
+            </table>
         </div>
     </div>
 

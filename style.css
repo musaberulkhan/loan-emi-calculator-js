@@ -6,6 +6,38 @@ body{
     font-family: 'Roboto Slab', serif;
 }
 
+
+.calculator{    
+  display: flex;
+  justify-content: center;    
+}
+
+.calculator form{
+  background-color: rgb(243, 243, 243);
+  padding: 30px 60px;
+  border-radius: 10px;
+  box-shadow: 5px 10px 18px #888888;
+}
+
+#breakdown-table{
+  width: 80%;
+}
+
+#breakdown-table th{
+  text-align: center;
+  background-color: rgb(177, 47, 0);
+  color: whitesmoke;
+}
+
+#breakdown-table th, td{
+  border: 1px solid rgb(83, 83, 83);
+  padding: 6px 25px;
+}
+
+
+
+/***********************************************************
+            Input Field Spin Button Hidden                */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -19,14 +51,3 @@ input[type=number] {
 }
 
 
-.calculator{    
-    display: flex;
-    justify-content: center;    
-}
-
-.calculator form{
-    background-color: rgb(243, 243, 243);
-    padding: 30px 60px;
-    border-radius: 10px;
-    box-shadow: 5px 10px 18px #888888;
-}
