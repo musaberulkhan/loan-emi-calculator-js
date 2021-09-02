@@ -12,6 +12,11 @@ calculateButton.addEventListener('click', function () {
     const bankInterestValue = bankInterestInput.value;
     const numberofEMIsValue = numberofEMIsInput.value;
     const errorMessageField = document.getElementById('error-message');
+    const tableLoanDetails = document.getElementById('loan-details-table');
+    tableLoanDetails.innerHTML = "";
+    const tableBreakdown = document.getElementById('breakdown-table');
+    tableBreakdown.innerHTML = ``;
+    document.getElementById('breakdown-table-title').innerText ="";
 
     if (loanAmountValue === '' || bankInterestValue === '' || numberofEMIsValue === '') {
         errorMessageField.innerText = "Please Input Data to All Fields";
@@ -23,18 +28,18 @@ calculateButton.addEventListener('click', function () {
         //------ Calculate EMI ---------
         errorMessageField.innerText = "";
         const loanAmount = parseFloat(loanAmountValue);
-        const bankInterest = parseFloat(bankInterestValue) / 100 / 12;
+        const bankInterest = (parseFloat(bankInterestValue) / 100 / 12);
         const numberofEMIs = parseFloat(numberofEMIsValue);
-        const x = Math.pow((1 + bankInterest), numberofEMIs);
+        const x = (Math.pow((1 + bankInterest), numberofEMIs)).toFixed(5);
+
         const EMIAmount = ((loanAmount * bankInterest * x) / (x - 1)).toFixed(2);
         const totalPayable = (EMIAmount * numberofEMIs).toFixed(2);
         const totalInterestPayable = (totalPayable - loanAmount).toFixed(2);
 
         //------ Loan Details Table ---------
-        const tableLoanDetails = document.getElementById('loan-details-table');
-        tableLoanDetails.innerHTML = "";
+
         tableLoanDetails.innerHTML =
-        `
+            `
             <tr>
                 <td>Monthly Payment (EMI)</td>
                 <td class="text-end fw-bold">${EMIAmount}</td>                
@@ -49,8 +54,7 @@ calculateButton.addEventListener('click', function () {
             </tr>
         `
 
-        const tableBreakdown = document.getElementById('breakdown-table');
-        tableBreakdown.innerHTML = ``;
+        //------ Loan Breakdown Table ---------        
         const tr_heading = document.createElement('tr');
         tr_heading.innerHTML = `
             <th>EMI No.</th>
@@ -58,21 +62,29 @@ calculateButton.addEventListener('click', function () {
             <th>Interest</th>
             <th>Remaining Loan</th>`;
         tableBreakdown.appendChild(tr_heading);
-        // let remainingLoan = loanAmount;        
-        // for (let i = 1; i <= numberofEMIs; i++) {
-        //     const interest = remainingLoan*(bankInterest);
-        //     remainingLoan = remainingLoan - interest;
 
-        //     const tr = document.createElement('tr');
-        //     tr.innerHTML = `
-        //         <td>${i}</td>
-        //         <td>${i}</td>
-        //         <td>${interest}</td>
-        //         <td>${remainingLoan}</td>
-        //     `;
-        //     table.appendChild(tr);
-    // }
-}
+        let remainingLoan = loanAmount;
+        for (let i = 1; i <= numberofEMIs; i++) {
+            const interest = (remainingLoan * bankInterest);
+            remainingLoan = (remainingLoan - EMIAmount + interest).toFixed(2);
+            const principalAdjusted = (EMIAmount - interest).toFixed(2);
+            const tr = document.createElement('tr');
+            if (i === numberofEMIs) {
+                remainingLoan = 0;
+            }
+            tr.innerHTML = `
+                <td>${i}</td>
+                <td>${principalAdjusted}</td>
+                <td>${interest.toFixed(2)}</td>
+                <td>${remainingLoan}</td>
+            `;
+            tableBreakdown.appendChild(tr);
+        }
+
+        //------ Display Heading ---------
+        document.getElementById('breakdown-table-title').innerText = "Amortization Chart";
+    }
+
 });
 
 

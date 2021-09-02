@@ -53,14 +53,14 @@ input[type=number] {
 }
 
 #breakdown-table th{
-  text-align: center;
   background-color: rgb(177, 47, 0);
   color: whitesmoke;
 }
 
-#breakdown-table th, td{
+#breakdown-table th, #breakdown-table td{
   border: 1px solid rgb(83, 83, 83);
   padding: 6px 25px;
+  text-align: center;
 }
 
 
