@@ -32,15 +32,26 @@ calculateButton.addEventListener('click', function () {
         table.appendChild(tr_heading);
 
         const loanAmount = parseFloat(loanAmountValue);
-        const bankInterest = parseFloat(bankInterestValue);
+        const bankInterest = parseFloat(bankInterestValue)/100/12;
         const numberofEMIs = parseFloat(numberofEMIsValue);
+        const  x = Math.pow((1+bankInterest), numberofEMIs);
+        
+        const EMIAmount = ((loanAmount*bankInterest*x)/(x-1)).toFixed(2);
+
+        errorMessageField.innerText = EMIAmount;
+
+        let remainingLoan = loanAmount;
+        
         for (let i = 1; i <= numberofEMIs; i++) {
+            const interest = remainingLoan*(bankInterest);
+            remainingLoan = remainingLoan - interest;
+
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td>${i}</td>
                 <td>${i}</td>
-                <td>${i}</td>
-                <td>${i}</td>
+                <td>${interest}</td>
+                <td>${remainingLoan}</td>
             `;
             table.appendChild(tr);
         }
