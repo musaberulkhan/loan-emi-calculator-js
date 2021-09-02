@@ -20,42 +20,59 @@ calculateButton.addEventListener('click', function () {
         errorMessageField.innerText = "Negative or Zero Inputs are Not Allowed";
     }
     else {
+        //------ Calculate EMI ---------
         errorMessageField.innerText = "";
-        const table = document.getElementById('breakdown-table');
-        table.innerHTML=``;
+        const loanAmount = parseFloat(loanAmountValue);
+        const bankInterest = parseFloat(bankInterestValue) / 100 / 12;
+        const numberofEMIs = parseFloat(numberofEMIsValue);
+        const x = Math.pow((1 + bankInterest), numberofEMIs);
+        const EMIAmount = ((loanAmount * bankInterest * x) / (x - 1)).toFixed(2);
+        const totalPayable = (EMIAmount * numberofEMIs).toFixed(2);
+        const totalInterestPayable = (totalPayable - loanAmount).toFixed(2);
+
+        //------ Loan Details Table ---------
+        const tableLoanDetails = document.getElementById('loan-details-table');
+        tableLoanDetails.innerHTML = "";
+        tableLoanDetails.innerHTML =
+        `
+            <tr>
+                <td>Monthly Payment (EMI)</td>
+                <td class="text-end fw-bold">${EMIAmount}</td>                
+            </tr>
+            <tr>
+                <td>Total Interest Payable</td>
+                <td class="text-end fw-bold">${totalInterestPayable}</td>                
+            </tr>
+            <tr>
+                <td>Total Payable</td>
+                <td class="text-end fw-bold">${totalPayable}</td>                
+            </tr>
+        `
+
+        const tableBreakdown = document.getElementById('breakdown-table');
+        tableBreakdown.innerHTML = ``;
         const tr_heading = document.createElement('tr');
         tr_heading.innerHTML = `
             <th>EMI No.</th>
             <th>Principal Adjusted</th>
             <th>Interest</th>
             <th>Remaining Loan</th>`;
-        table.appendChild(tr_heading);
+        tableBreakdown.appendChild(tr_heading);
+        // let remainingLoan = loanAmount;        
+        // for (let i = 1; i <= numberofEMIs; i++) {
+        //     const interest = remainingLoan*(bankInterest);
+        //     remainingLoan = remainingLoan - interest;
 
-        const loanAmount = parseFloat(loanAmountValue);
-        const bankInterest = parseFloat(bankInterestValue)/100/12;
-        const numberofEMIs = parseFloat(numberofEMIsValue);
-        const  x = Math.pow((1+bankInterest), numberofEMIs);
-        
-        const EMIAmount = ((loanAmount*bankInterest*x)/(x-1)).toFixed(2);
-
-        errorMessageField.innerText = EMIAmount;
-
-        let remainingLoan = loanAmount;
-        
-        for (let i = 1; i <= numberofEMIs; i++) {
-            const interest = remainingLoan*(bankInterest);
-            remainingLoan = remainingLoan - interest;
-
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${i}</td>
-                <td>${i}</td>
-                <td>${interest}</td>
-                <td>${remainingLoan}</td>
-            `;
-            table.appendChild(tr);
-        }
-    }
+        //     const tr = document.createElement('tr');
+        //     tr.innerHTML = `
+        //         <td>${i}</td>
+        //         <td>${i}</td>
+        //         <td>${interest}</td>
+        //         <td>${remainingLoan}</td>
+        //     `;
+        //     table.appendChild(tr);
+    // }
+}
 });
 
 

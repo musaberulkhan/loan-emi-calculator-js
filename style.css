@@ -6,7 +6,7 @@ body{
     font-family: 'Roboto Slab', serif;
 }
 
-
+/* --------------    Calculator  ---------------------- */
 .calculator{    
   display: flex;
   justify-content: center;    
@@ -19,6 +19,35 @@ body{
   box-shadow: 5px 10px 18px #888888;
 }
 
+/* Input Field Spin Button Hidden*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+/* --------------    Loan Details Table  ---------------------- */
+#loan-details-table td{
+   padding: 6px 25px;   
+}
+
+#loan-details-table tr{
+  border-bottom: 1px solid rgb(83, 83, 83);
+}
+
+#loan-details-table tr:last-child{
+  background-color: rgb(240, 240, 240);
+  border: 0;
+}
+
+/* --------------    Breakdown Table  ---------------------- */
 #breakdown-table{
   width: 80%;
 }
@@ -36,18 +65,5 @@ body{
 
 
 
-/***********************************************************
-            Input Field Spin Button Hidden                */
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
 
 
