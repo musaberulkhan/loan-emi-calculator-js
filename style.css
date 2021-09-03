@@ -73,4 +73,32 @@ input[type=number] {
 
 
 
+/*****************************************************************************************************    
+                                       Responsive Query
+*****************************************************************************************************/
+/* **********     For Table and Small Device    ***********/
+@media only screen and (max-width:600px){
+  .chart-container{
+    width: 100%;   
+    padding: 15px;
+  }
+  
+  #breakdown-table{
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  #breakdown-table th, #breakdown-table td{    
+    padding: 4px 8px;
+    text-align: center;
+  }
+  
+  
+}
+
+
+
+
+
 
