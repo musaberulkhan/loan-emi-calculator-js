@@ -47,6 +47,13 @@ input[type=number] {
   border: 0;
 }
 
+
+#myChart{
+  width: 200px;
+  height: 200px;
+}
+
+
 /* --------------    Breakdown Table  ---------------------- */
 #breakdown-table{
   width: 80%;

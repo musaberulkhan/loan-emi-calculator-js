@@ -5,6 +5,38 @@ const bankInterestInput = document.getElementById('bank-interest-input');
 const numberofEMIsInput = document.getElementById('number-of-emis-input');
 const calculateButton = document.getElementById('calculate-button');
 
+
+//********************************************************************
+//                      Chart Declare
+const canvas = document.getElementById('principalInterestChart').getContext('2d');
+let config = {
+    type: 'pie',
+    data: {
+        labels: [],
+        datasets: [{
+            data: [],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)'
+            ],
+            borderWidth: 1
+        }]
+    }
+}
+var principalInterestChart = new Chart(canvas, config);
+
+//Chart Update/Add Data Function
+function addData(chart, label, data) {
+    chart.data.labels = label;
+    chart.data.datasets[0].data = data;
+    chart.update();
+}
+
+
 //********************************************************************
 //                 Calculate Button Event Listener
 calculateButton.addEventListener('click', function () {
@@ -16,7 +48,7 @@ calculateButton.addEventListener('click', function () {
     tableLoanDetails.innerHTML = "";
     const tableBreakdown = document.getElementById('breakdown-table');
     tableBreakdown.innerHTML = ``;
-    document.getElementById('breakdown-table-title').innerText ="";
+    document.getElementById('breakdown-table-title').innerText = "";
 
     if (loanAmountValue === '' || bankInterestValue === '' || numberofEMIsValue === '') {
         errorMessageField.innerText = "Please Input Data to All Fields";
@@ -53,6 +85,14 @@ calculateButton.addEventListener('click', function () {
                 <td class="text-end fw-bold">${totalPayable}</td>                
             </tr>
         `
+        
+        //------ Principal and Interest Pie Chart ---------
+       
+        addData(principalInterestChart, 
+            ["Interest","Principal"], 
+            [totalInterestPayable,totalPayable-totalInterestPayable]);
+
+        
 
         //------ Loan Breakdown Table ---------        
         const tr_heading = document.createElement('tr');
@@ -88,23 +128,5 @@ calculateButton.addEventListener('click', function () {
 });
 
 
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-        labels: ['Red', 'Blue'],
-        datasets: [{           
-            data: [19, 19],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)'             
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)'                
-            ],
-            borderWidth: 1
-        }]
-    }    
-});
+
 
