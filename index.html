@@ -26,10 +26,10 @@
 
 <body>
     <div class="container">
-        <h1 class="text-center mt-5">Loan EMI Calculator with <span style="color: rgb(199, 106, 0);">Breakdown</span>
+        <h1 class="text-center mt-3">Loan EMI Calculator with <span style="color: rgb(199, 106, 0);">Breakdown</span>
         </h1>
-        <div class="my-5 calculator">
-            <form>
+        <div class="my-4 calculator">
+            <form class="px-5 py-3">
                 <div class="mb-3">
                     <label for="loan-amount-input" class="form-label">Loan Amount</label>
                     <input type="number" class="form-control" id="loan-amount-input" placeholder="Example: 200000">
@@ -51,14 +51,14 @@
             </form>
         </div>
 
-        <div class="my-5 row">
+        <div class="my-5 row">           
             <div class="col-md-6 col-12 d-flex align-items-center justify-content-center">
                 <table id="loan-details-table" class="fs-4">
 
                 </table>
             </div>
-            <div class="col-md-6 col-12 p-5">
-               <div class="chart-container p-lg-5">
+            <div class="col-md-6 col-12 p-2 d-flex align-items-center justify-content-center">
+               <div class="chart-container">
                     <canvas id="principalInterestChart"></canvas>
                </div>
             </div>
